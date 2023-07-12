@@ -1,0 +1,41 @@
+{
+  "productList": [
+    {
+      "productName": "mango",
+      "category": "Fruits",
+      "freshness": "fresh",
+      "price": 180,
+      "comment": "Good For Health",
+      "date": "2023-07-11T19:00:00.000Z",
+      "id": 1
+    },
+    {
+      "productName": "Watch",
+      "category": "Elcetronics",
+      "freshness": "fresh",
+      "price": 3000,
+      "comment": "For Time Management.",
+      "date": "2023-07-12T19:00:00.000Z",
+      "id": 2
+    },
+    {
+      "productName": "oil",
+      "category": "Elcetronics",
+      "freshness": "fresh",
+      "price": 1000,
+      "comment": "for lubraction",
+      "date": "2023-07-27T19:00:00.000Z",
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
