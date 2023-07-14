@@ -69,7 +69,11 @@ this.getAllProducts();
     })
   }
 
-  editProduct(row : any){
+  editProduct(){
+   let row;
+   
+
+    // subsribe(result=>)
     this.dialog.open(DialogComponent,{
       width:'30%',
       data: row
