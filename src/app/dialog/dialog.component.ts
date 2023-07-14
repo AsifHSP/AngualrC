@@ -8,19 +8,27 @@ import{ MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent {
-freshnessList = ["Brand New", "Second Hand", "Refurbished"]
+freshnessList : any = []
 productForm !: FormGroup;
 actionBtn : string = "Save"
+categoryList:any=[];
 
 constructor(private formBuilder : FormBuilder, 
   private api:ApiService, 
+  
   @Inject(MAT_DIALOG_DATA) public editData : any,
-  private dialogRef :MatDialogRef<DialogComponent>){}
+  private dialogRef :MatDialogRef<DialogComponent>,
+  private _apiService: ApiService,
+  ){}
+
+
 ngOnInit(): void {
+  this.getProductCategoryList();
+  this.getProductFreshness();
   this.productForm =  this.formBuilder.group({
-    productName : ['', Validators.required],
-    category : ['', Validators.required],
-    freshness : ['', Validators.required],
+    name : ['', Validators.required],
+    productCategoryId : ['', Validators.required],
+    productFreshnessId : ['', Validators.required],
     price : ['', Validators.required],
     comment : ['', Validators.required],
     date : ['', Validators.required],
@@ -36,7 +44,7 @@ ngOnInit(): void {
   }
 }
 addProduct(){
-  if(!this.editData){
+  
     if(this.productForm.valid){
       this.api.postProduct(this.productForm.value)
       .subscribe({
@@ -50,10 +58,10 @@ addProduct(){
         }
       })
     }
-    else{
-      this.updateProduct()
-    }
-  }
+    // else{
+    //   this.updateProduct()
+    // }
+  
 }
 updateProduct(){
     this.api.putProduct(this.productForm.value, this.editData.id)
@@ -66,6 +74,18 @@ updateProduct(){
       error:()=>{
         alert("Error while upadating the record.");
       }
+    })
+  }
+
+  getProductCategoryList(){
+    this._apiService.getProductCategoryList().subscribe(res=>{
+      this.categoryList = res;
+    })
+  }
+
+  getProductFreshness(){
+    this._apiService.getProductFreshnessList().subscribe(res=>{
+      this.freshnessList = res;
     })
   }
 

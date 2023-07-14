@@ -7,16 +7,41 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
+  // postProduct(data : any){
+  //   return this.http.post<any>("http://localhost:3000/productList/",data);
+  // }
+  // getProduct(){
+  //   return this.http.get<any>("http://localhost:3000/productList/");
+  // }
+  // putProduct(data:any, id: number){
+  //   return this.http.put<any>("http://localhost:3000/productList/"+id, data);
+  // }
+  // deleteProduct(id: number){
+  //   return this.http.delete<any>("http://localhost:3000/productList/"+id);
+  // }
   postProduct(data : any){
-    return this.http.post<any>("http://localhost:3000/productList/",data);
+    return this.http.post<any>("http://localhost:5077/api/Product/AddProduct/",data);
   }
   getProduct(){
-    return this.http.get<any>("http://localhost:3000/productList/");
+    
+    return this.http.get<any>("http://localhost:5077/api/Product/GetProducts");
   }
   putProduct(data:any, id: number){
-    return this.http.put<any>("http://localhost:3000/productList/"+id, data);
+    return this.http.put<any>("http://localhost:5077/api/Product/UpdateProduct/"+id, data);
   }
   deleteProduct(id: number){
-    return this.http.delete<any>("http://localhost:3000/productList/"+id);
+    return this.http.delete<any>("http://localhost:5077/api/Product/DeleteProduct/"+id);
+  }
+  postProductCategory(data : any){
+    return this.http.post<any>("http://localhost:5077/api/ProductCategory/AddProductCategory", data);
+  }
+  getProductCategoryList(){
+    return this.http.get<any>("http://localhost:5077/api/ProductCategory/GetProductsCategory");
+  }
+  postProductFreshness(data:any){
+    return this.http.post<any>("http://localhost:5077/api/ProductFreshness/AddProductFreshness", data)
+  }
+  getProductFreshnessList(){
+    return this.http.get<any>("http://localhost:5077/api/ProductFreshness/GetProductsFreshness")
   }
 }

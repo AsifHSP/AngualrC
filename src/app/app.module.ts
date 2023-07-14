@@ -19,11 +19,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
+import { ProductfreshnessComponent } from './productfreshness/productfreshness.component';
+import { SelectfreshnessComponent } from './selectfreshness/selectfreshness.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogComponent
+    DialogComponent,
+    ProductfreshnessComponent,
+    SelectfreshnessComponent
   ],
   imports: [
     BrowserModule,

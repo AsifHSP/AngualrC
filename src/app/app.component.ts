@@ -5,6 +5,8 @@ import { ApiService } from './services/api.service';
 import {MatPaginator} from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { ProductfreshnessComponent } from './productfreshness/productfreshness.component';
+import { SelectfreshnessComponent } from './selectfreshness/selectfreshness.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -33,10 +35,30 @@ this.getAllProducts();
       }
     })
   }
+  openDialogFreshness() {
+    this.dialog.open(ProductfreshnessComponent, {
+      width:'30%'
+    }).afterClosed().subscribe(val=>{
+      if(val === 'save'){
+        this.getAllProducts();
+      }
+    })
+  }
+  openDialogSelectFreshness() {
+    this.dialog.open(SelectfreshnessComponent , {
+      width:'30%'
+    }).afterClosed().subscribe(val=>{
+      if(val === 'save'){
+        this.getAllProducts();
+      }
+    })
+  }
+
   getAllProducts(){
     this.api.getProduct()
     .subscribe({
       next:(res:any)=>{
+        console.log(res)
         this.dataSource = new MatTableDataSource(res);
         // this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort

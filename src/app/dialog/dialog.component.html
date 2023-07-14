@@ -3,14 +3,12 @@
     <form [formGroup]="productForm">
         <mat-form-field appearance="outline">
             <mat-label>Product Name</mat-label>
-            <input formControlName="productName" matInput placeholder="Placeholder">
+            <input formControlName="name" matInput placeholder="Placeholder">
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <mat-select formControlName="category" placehoder="Category">
-                <mat-option value="Fruits">Fruits</mat-option>
-                <mat-option value="Elcetronics">Elcetronics</mat-option>
-                <mat-option value="Vegitables">Vegitables</mat-option>
+            <mat-label>Category Name</mat-label>
+            <mat-select formControlName="productCategoryId" placehoder="Category">
+                <mat-option *ngFor="let category of categoryList" [value]="category.id" >{{category.name}}</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -23,9 +21,9 @@
         <label for="">
             <h1>Product Freshness</h1>
         </label>
-        <mat-radio-group formControlName="freshness" class="example-radio-group">
-            <mat-radio-button color="primary" class="example-radio-button" *ngFor="let fresh of freshnessList" value="fresh">
-                {{fresh}}
+        <mat-radio-group formControlName="productFreshnessId" class="example-radio-group">
+            <mat-radio-button color="primary" class="example-radio-button" *ngFor="let fresh of freshnessList" [value]="fresh.id">
+                {{fresh.name}}
             </mat-radio-button>
         </mat-radio-group>
         <mat-form-field appearance="outline">
