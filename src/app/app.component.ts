@@ -69,20 +69,18 @@ this.getAllProducts();
     })
   }
 
-  editProduct(){
-   let row;
-   
-
-    // subsribe(result=>)
-    this.dialog.open(DialogComponent,{
-      width:'30%',
-      data: row
-    }).afterClosed().subscribe((val:any)=>{
-      if(val === 'update'){
-        this.getAllProducts();
-      }
-    })
-  }
+  // editProduct(){
+  //  let row;
+  //   // subsribe(result=>)
+  //   this.dialog.open(DialogComponent,{
+  //     width:'30%',
+  //     data: row
+  //   }).afterClosed().subscribe((val:any)=>{
+  //     if(val === 'update'){
+  //       this.getAllProducts();
+  //     }
+  //   })
+  // }
 
   deleteProduct(id:number){
     this.api.deleteProduct(id)
@@ -103,6 +101,22 @@ this.getAllProducts();
       this.dataSource.paginator.firstPage();
     }
   }
+
+  editProduct(id:number){
+    debugger;
+    this.api.getProductData(id).subscribe(res=>{
+      this.dialog.open(DialogComponent,{
+        width:'30%',
+        data: res 
+      }).afterClosed().subscribe((val:any)=>{
+        if(val === 'update'){
+          this.getAllProducts();
+        }
+      })
+    })
+      
+     
+   }
 }
 
 // function ViewChild(MatPaginator: any): (target: AppComponent, propertyKey: "paginator") => void {

@@ -26,38 +26,48 @@ ngOnInit(): void {
   this.getProductCategoryList();
   this.getProductFreshness();
   this.productForm =  this.formBuilder.group({
+    Id : [0],
     name : ['', Validators.required],
     productCategoryId : ['', Validators.required],
     productFreshnessId : ['', Validators.required],
     price : ['', Validators.required],
     comment : ['', Validators.required],
-    date : ['', Validators.required],
+    selectionDate:['',Validators.required]
   });
   if(this.editData){
     this.actionBtn = "Update";
-    this.productForm.controls['productName'].setValue(this.editData.productName);
-    this.productForm.controls['category'].setValue(this.editData.category);
-    this.productForm.controls['freshness'].setValue(this.editData.freshness);
+    debugger
+    console.log(this.editData)
+    this.productForm.controls['Id'].setValue(this.editData.id);
+    this.productForm.controls['name'].setValue(this.editData.name);
+    this.productForm.controls['productCategoryId'].setValue(this.editData.productCategoryId);
+    this.productForm.controls['productFreshnessId'].setValue(this.editData.productFreshnessId);
     this.productForm.controls['price'].setValue(this.editData.price);
     this.productForm.controls['comment'].setValue(this.editData.comment);
-    this.productForm.controls['date'].setValue(this.editData.date);
+    this.productForm.controls['selectionDate'].setValue(this.editData.selectionDate);
   }
 }
 addProduct(){
-  
+  debugger
     if(this.productForm.valid){
-      this.api.postProduct(this.productForm.value)
-      .subscribe({
-        next:(res)=>{
-          alert("Product Added Successfully.")
-          this.productForm.reset();
-          this.dialogRef.close('save');
-        },
-        error:()=>{
-          alert("Error While Adding The Product.")
-        }
-      })
-    }
+      if(this.actionBtn=="Update"){
+        this.updateProduct();
+      }
+      else{
+        this.api.postProduct(this.productForm.value)
+        .subscribe({
+          next:(res)=>{
+            alert("Product Added Successfully.")
+            this.productForm.reset();
+            this.dialogRef.close('save');
+          },
+          error:()=>{
+            alert("Error While Adding The Product.")
+          }
+        })
+      }
+      }
+    
     // else{
     //   this.updateProduct()
     // }
@@ -67,12 +77,13 @@ updateProduct(){
     this.api.putProduct(this.productForm.value, this.editData.id)
     .subscribe({
       next:(res)=>{
+        debugger
         alert("Product Updated Successfully");
         this.productForm.reset();
         this.dialogRef.close('update');
       },
       error:()=>{
-        alert("Error while upadating the record.");
+        alert("Error while upadating the record."); 
       }
     })
   }

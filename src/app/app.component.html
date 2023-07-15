@@ -6,7 +6,8 @@
   <span class="example-spacer"></span>
   <button mat-raised-button color="warn" (click)="openDialog()">Add Product</button>
   <button style="margin: 5px;" mat-raised-button color="warn" (click)="openDialogFreshness()">Add Category</button>
-  <button style="margin: 1px;" mat-raised-button color="warn" (click)="openDialogSelectFreshness()">Add Freshness</button>
+  <button style="margin: 1px;" mat-raised-button color="warn" (click)="openDialogSelectFreshness()">Add
+    Freshness</button>
 </mat-toolbar>
 <!-- Add Table for showing the data on the Home Page of Website -->
 <div class="container">
@@ -28,7 +29,7 @@
         <!-- Category -->
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
-          <td mat-cell *matCellDef="let row"> {{row.category}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.productCategoryName}} </td>
         </ng-container>
 
         <!-- Date -->
@@ -40,7 +41,7 @@
         <!-- Freshness -->
         <ng-container matColumnDef="freshness">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Freshness </th>
-          <td mat-cell *matCellDef="let row"> {{row.freshness}} </td>
+          <td mat-cell *matCellDef="let row"> {{row.productFreshnessName}} </td>
         </ng-container>
 
         <!-- Price -->
@@ -59,7 +60,7 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
           <td mat-cell *matCellDef="let row">
-            <button mat-icon-button (click)="editProduct()" color="primary">
+            <button mat-icon-button (click)="editProduct(row.id)" color="primary">
               <mat-icon> edit </mat-icon>
             </button>
             <button (click)="deleteProduct(row.id)" mat-icon-button color="warn">
@@ -67,6 +68,7 @@
             </button>
           </td>
         </ng-container>
+
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
