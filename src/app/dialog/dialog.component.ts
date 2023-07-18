@@ -75,17 +75,16 @@ addProduct(){
 }
 updateProduct(){
     this.api.putProduct(this.productForm.value, this.editData.id)
-    .subscribe({
-      next:(res)=>{
+    .toPromise().then(res=>{
         debugger
-        alert("Product Updated Successfully");
+        alert(res.message);
         this.productForm.reset();
         this.dialogRef.close('update');
       },
-      error:()=>{
-        alert("Error while upadating the record."); 
-      }
-    })
+     
+    ), ()=>{
+      alert("Error while upadating the record."); 
+    }
   }
 
   getProductCategoryList(){

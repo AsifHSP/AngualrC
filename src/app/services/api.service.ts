@@ -24,6 +24,9 @@ export class ApiService {
   postProductCategory(data : any){
     return this.http.post<any>("http://localhost:5077/api/ProductCategory/AddProductCategory", data);
   }
+  putProductCategory(data: any){
+    return this.http.put<any>("http://localhost:5077/api/ProductCategory/UpdateProductCategory", data);
+  }
   getProductCategoryList(){
     return this.http.get<any>("http://localhost:5077/api/ProductCategory/GetProductsCategory");
   }

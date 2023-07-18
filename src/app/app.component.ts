@@ -7,12 +7,14 @@ import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { ProductfreshnessComponent } from './productfreshness/productfreshness.component';
 import { SelectfreshnessComponent } from './selectfreshness/selectfreshness.component';
+import { CategoriesComponent } from './categories/categories.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
 
   title = 'Angular13Crud';
   displayedColumns: string[] = ['productName', 'category', 'date' , 'freshness', 'price', 'comment', 'action'];
@@ -34,9 +36,19 @@ this.getAllProducts();
         this.getAllProducts();
       }
     })
+  } 
+  opencategories() {
+    this.dialog.open(CategoriesComponent,{
+      width:'30%'
+    }).afterClosed().subscribe(val=>{
+      if(val === 'save'){
+        this.getAllProducts();
+      }
+    })
   }
+
   openDialogFreshness() {
-    this.dialog.open(ProductfreshnessComponent, {
+    this.dialog.open(ProductfreshnessComponent,{
       width:'30%'
     }).afterClosed().subscribe(val=>{
       if(val === 'save'){
@@ -54,6 +66,18 @@ this.getAllProducts();
     })
   }
 
+  openDialogCategories() {
+    this.dialog.open(CategoriesComponent, {
+      width:'30%'
+    }).afterClosed().subscribe(val=>{
+      if(val === 'save'){
+        this.getAllProducts();
+      }
+    })
+  }
+
+  
+
   getAllProducts(){
     this.api.getProduct()
     .subscribe({
@@ -69,18 +93,6 @@ this.getAllProducts();
     })
   }
 
-  // editProduct(){
-  //  let row;
-  //   // subsribe(result=>)
-  //   this.dialog.open(DialogComponent,{
-  //     width:'30%',
-  //     data: row
-  //   }).afterClosed().subscribe((val:any)=>{
-  //     if(val === 'update'){
-  //       this.getAllProducts();
-  //     }
-  //   })
-  // }
 
   deleteProduct(id:number){
     this.api.deleteProduct(id)
@@ -103,7 +115,6 @@ this.getAllProducts();
   }
 
   editProduct(id:number){
-    debugger;
     this.api.getProductData(id).subscribe(res=>{
       this.dialog.open(DialogComponent,{
         width:'30%',
@@ -119,7 +130,5 @@ this.getAllProducts();
    }
 }
 
-// function ViewChild(MatPaginator: any): (target: AppComponent, propertyKey: "paginator") => void {
-//   throw new Error('Function not implemented.');
-// }
+
 

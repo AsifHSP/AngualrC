@@ -21,13 +21,15 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSortModule} from '@angular/material/sort';
 import { ProductfreshnessComponent } from './productfreshness/productfreshness.component';
 import { SelectfreshnessComponent } from './selectfreshness/selectfreshness.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
     ProductfreshnessComponent,
-    SelectfreshnessComponent
+    SelectfreshnessComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
